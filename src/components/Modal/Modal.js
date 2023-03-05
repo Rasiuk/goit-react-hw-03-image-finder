@@ -17,9 +17,9 @@ export class Modal extends Component {
     }
   };
   render() {
-    const { largeImage } = this.props;
+    const { largeImage, onCloseModal } = this.props;
     return createPortal(
-      <Ovrelay>
+      <Ovrelay onClick={onCloseModal}>
         <ModalStyle>
           <img src={largeImage} alt="" />
         </ModalStyle>
