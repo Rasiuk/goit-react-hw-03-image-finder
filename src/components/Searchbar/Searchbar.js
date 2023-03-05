@@ -1,34 +1,50 @@
 import { Component } from 'react';
+import { FcSearch } from 'react-icons/fc';
+import {
+  ButtonLabel,
+  Input,
+  SearchBar,
+  SearchButton,
+  SearchForm,
+} from './Searchbar.styled';
+import PropTypes from 'prop-types';
+
 export class Searchbar extends Component {
   state = {
     nameImage: '',
   };
 
-  onInpurChange = evt => {
+  onInputChange = evt => {
     this.setState({ nameImage: evt.currentTarget.value });
   };
   onSubmitForm = evt => {
     evt.preventDefault();
     this.props.onSubmit(this.state.nameImage);
+    this.setState({ nameImage: '' });
   };
   render() {
     return (
-      <header className="searchbar">
-        <form onSubmit={this.onSubmitForm} className="form">
-          <button type="submit" className="button">
-            <span className="button-label">Search</span>
-          </button>
+      <SearchBar>
+        <SearchForm onSubmit={this.onSubmitForm}>
+          <SearchButton type="submit">
+            <FcSearch />
+            <ButtonLabel>Search</ButtonLabel>
+          </SearchButton>
 
-          <input
-            onChange={this.onInpurChange}
+          <Input
+            value={this.state.nameImage}
+            onChange={this.onInputChange}
             className="input"
             type="text"
             autoomplete="off"
             autoFocus
             placeholder="Search images and photos"
           />
-        </form>
-      </header>
+        </SearchForm>
+      </SearchBar>
     );
   }
 }
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
