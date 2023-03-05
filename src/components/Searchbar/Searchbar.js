@@ -19,8 +19,12 @@ export class Searchbar extends Component {
   };
   onSubmitForm = evt => {
     evt.preventDefault();
-    this.props.onSubmit(this.state.nameImage);
-    this.setState({ nameImage: '' });
+    if (this.state.nameImage === '') {
+      return alert('Enter image name to search');
+    } else {
+      this.props.onSubmit(this.state.nameImage);
+      this.setState({ nameImage: '' });
+    }
   };
   render() {
     return (
