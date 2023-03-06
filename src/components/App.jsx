@@ -25,7 +25,6 @@ export class App extends Component {
           .json()
           .then(data =>
             this.setState(prevState => {
-              console.log(prevState);
               return {
                 images: [...prevState.images, ...data.hits],
                 total: data.total,
